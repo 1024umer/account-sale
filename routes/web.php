@@ -371,6 +371,7 @@ Route::group(
             ],
             function () {
                 Route::get('/', [ReviewController::class, 'index']);
+                Route::post('/store', [ReviewController::class, 'store'])->name('store');
                 Route::get('/list', [ReviewController::class, 'list'])->name('list');
                 Route::post('/answer', [ReviewController::class, 'answer'])->name('answer');
             }
