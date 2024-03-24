@@ -1,0 +1,53 @@
+.text_card{
+    background-color: #67696d !important;
+    color: #fff !important;
+}
+
+.make_money td, .make_money th{
+    padding-bottom: 20px !important;
+    padding-top: 20px !important;
+    padding-left: 15px !important;
+    border-bottom: 0px !important;
+}
+
+.make_money td{
+    background-color: #515253 !important; 
+    color: #fff !important;
+}
+.make_money th{
+    background-color: #626468 !important; 
+    color: #fff !important;
+}
+
+.quantity{
+    display: flex;
+    margin-bottom: 10px;
+}
+.quantity-sub{
+    margin-left: 10px;
+    padding: 5px 5px;
+    background-color: #fff;
+}
+.minus{
+    border-radius: 50%;
+    background-color: #000;
+    cursor: pointer;
+    padding-right: 7px;
+    width: 26px;
+    height: 26px;
+    padding-left: 9px;
+
+}
+.plus{
+    border-radius: 50%;
+    background-color: #000;
+    padding-left: 7px;
+    padding-top: 0px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.num{
+    margin: 0px 7px;
+    color: #000;
+}

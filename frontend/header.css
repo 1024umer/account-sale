@@ -1,0 +1,219 @@
+body {
+    /* background: #111317; */
+    overflow-x: hidden;
+    overflow-y: overlay;
+    /* color: #fff; */
+}
+
+.button {
+    border: none;
+    padding: 16px 24px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .02em;
+    font-feature-settings: "pnum" on, "lnum" on;
+    border-radius: 8px;
+    transition: .2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header .navbar {
+    background: black;
+    backdrop-filter: blur(24px);
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+}
+
+header .navbar .nav-link {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: hsla(0, 0%, 85.9%, .68);
+    margin-right: 20px;
+}
+
+header .navbar .nav-link:hover {
+    color: #fff !important;
+}
+
+header .navbar .current {
+    color: #20ada3 !important;
+}
+
+header .signInBtn {
+    background: hsla(0, 0%, 100%, .03);
+    color: #dbdbdb;
+    font-weight: 500;
+    padding: 16px 24px;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .02em;
+    border-radius: 8px;
+    border: none;
+    margin-right: 24px;
+    transition: 0.2s;
+}
+
+header .signInBtn:hover {
+    transition: 0.2s;
+    background: hsla(0, 0%, 100%, 0.212);
+}
+
+header .supportBtn {
+    background: #20ada3;
+    color: #dbdbdb;
+    font-weight: 550;
+    padding: 16px 24px;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .02em;
+    border-radius: 8px;
+    border: none;
+    margin-right: 24px;
+    transition: 0.2s;
+    color: #000;
+}
+
+header .navbar-brand img {
+    max-width: 75px;
+    max-height: 50px;
+    padding-right: 26px;
+}
+
+header .supportBtn:hover {
+    transition: 0.2s;
+    background: #fff;
+}
+
+header .header-profile {
+    display: flex;
+    justify-content: center;
+    border: 3px solid transparent;
+    transition: 0.2s;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px 20px;
+}
+
+header .header-profile:hover {
+    transition: 0.2s;
+    border: 3px solid #20ada3;
+}
+
+header .user-avatar img {
+    max-width: 50px !important;
+    max-height: 50px !important;
+}
+
+
+header .header-dropdown {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    white-space: nowrap;
+    display: none;
+    position: absolute;
+    top: 96px;
+    justify-content: center;
+}
+
+header .header-dropdown:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    border: 6px solid transparent;
+    border-bottom: 8px solid rgba(23, 27, 32, .8);
+}
+
+header .header-dropdown__overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    cursor: auto;
+}
+
+header .header-dropdown__content {
+    background: rgba(23, 27, 32, .8);
+    border: 1px solid hsla(0, 0%, 100%, .03);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .12);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    border-radius: 12px;
+    padding: 0 20px;
+    margin-top: 12px;
+}
+
+header .header-dropdown svg {
+    height: 25 !important;
+    width: 24 !important;
+    color: #dbdbdb !important;
+}
+
+header .header-dropdown a:hover {
+    color: #fff;
+}
+
+header .header-dropdown__item:not(:last-child) {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .03);
+}
+
+header .header-dropdown__item {
+    padding: 20px 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .02em;
+    color: #95979f;
+    transition: .25s;
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+header .navbar-toggler {
+    background-color: #dbdbdb !important;
+}
+
+header .header-dropdown__item {
+    padding: 20px 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .02em;
+    color: #95979f;
+    transition: .25s;
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    header .header-dropdown {
+        left: 42px;
+        top: 310px;
+    }
+}

@@ -1,0 +1,148 @@
+{
+  "menu": [
+    {
+      "menuHeader": "Pages"
+    },
+    {
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "admin.home",
+      "url": "/admin"
+    },
+
+    {
+      "name": "Store Settings",
+      "icon": "menu-icon tf-icons ti ti-building-store",
+      "slug": "admin.store.",
+      "url": "/admin/store"
+    },
+    {
+      "name": "All Store",
+      "icon": "menu-icon tf-icons ti ti-building-store",
+      "slug": "admin.store.",
+      "url": "admin/All-Stores"
+    },
+    {
+      "menuHeader": "Products"
+    },
+    {
+      "name": "Accounts",
+      "icon": "menu-icon tf-icons ti ti-device-gamepad",
+      "slug": "admin.gamingaccounts.",
+      "url": "/admin/gamingaccounts"
+    },
+    {
+      "name": "Templates",
+      "icon": "menu-icon tf-icons ti ti-device-gamepad",
+      "slug": "admin.templates.",
+      "url": "/admin/templates"
+    },
+    {
+      "name": "Categories",
+      "icon": "menu-icon tf-icons ti ti-list",
+      "slug": "admin.categories.",
+      "url": "/admin/categories"
+    },
+    {
+      "name": "SubCategories",
+      "icon": "menu-icon tf-icons ti ti-list",
+      "slug": "admin.subcategories.",
+      "url": "/admin/subcategories"
+    },
+    {
+      "name": "Sub SubCategories",
+      "icon": "menu-icon tf-icons ti ti-list",
+      "slug": "admin.sub_subcategories.",
+      "url": "/admin/sub_subcategories"
+    },
+    
+
+    {
+      "menuHeader": "Support"
+    },
+    {
+      "name": "Tickets",
+      "icon": "menu-icon tf-icons ti ti-ticket",
+      "slug": "admin.tickets.",
+      "url": "/admin/tickets"
+    },
+    {
+      "name": "User Tickets",
+      "icon": "menu-icon tf-icons ti ti-ticket",
+      "slug": "admin.usertickets.",
+      "url": "/admin/usertickets"
+    },
+    {
+      "name": "Custom Refferal",
+      "icon": "menu-icon tf-icons ti ti-ticket",
+      "slug": "admin.customrefferal.",
+      "url": "/admin/customrefferal"
+    },
+    {
+      "menuHeader": "Orders"
+    },
+    {
+      "name": "Roles",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "admin.roles.",
+      "url": "/admin/roles"
+    },
+    {
+      "name": "Users",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "admin.users.",
+      "url": "/admin/users"
+    },
+    {
+      "name": "Orders",
+      "icon": "menu-icon tf-icons ti ti-report-money",
+      "slug": "admin.orders.",
+      "url": "/admin/orders"
+    },
+    {
+      "name": "Manual Orders",
+      "icon": "menu-icon tf-icons ti ti-report-money",
+      "slug": "admin.manualorders.",
+      "url": "/admin/manualorders"
+    },
+    {
+      "name": "Transactions",
+      "icon": "menu-icon tf-icons ti ti-zoom-money",
+      "slug": "admin.transactions.",
+      "url": "/admin/transactions"
+    },
+    {
+      "name": "With Draw Requests",
+      "icon": "menu-icon tf-icons ti ti-report-money",
+      "slug": "admin.withdraw.",
+      "url": "/admin/withdraw"
+    },
+    {
+      "name": "Reviews",
+      "icon": "menu-icon tf-icons ti ti-star",
+      "slug": "admin.review",
+      "url": "/admin/review"
+    },
+    {
+      "menuHeader": "Modules"
+    },
+    {
+      "name": "Give Aways",
+      "icon": "menu-icon tf-icons ti ti-ticket",
+      "slug": "admin.giveaway.",
+      "url": "/admin/giveaway"
+    },
+    {
+      "name": "Coupon",
+      "icon": "menu-icon tf-icons ti ti-device-gamepad",
+      "slug": "admin.coupon.",
+      "url": "/admin/coupon"
+    },
+    {
+      "name": "Volume Dicount",
+      "icon": "menu-icon tf-icons ti ti-device-gamepad",
+      "slug": "admin.volume.",
+      "url": "/admin/volume"
+    }
+  ]
+}

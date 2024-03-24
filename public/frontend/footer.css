@@ -1,0 +1,76 @@
+footer {
+    background: rgba(23, 27, 32, .36);
+}
+
+footer p {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .012em;
+    color: #62646c;
+    max-width: 360px;
+}
+
+footer h4 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #62646c;
+}
+
+footer .links a {
+    display: block;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    font-feature-settings: "pnum" on, "lnum" on;
+    color: hsla(0, 0%, 85.9%, .68);
+    transition: .25s;
+}
+
+footer .links a:hover {
+    color: #20ada3;
+    transition: .25s;
+}
+
+footer .border-bottom {
+    border-color: #414142 !important;
+}
+
+footer .bottom-side a {
+    color: #20ada3;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+footer .social a {
+    border-radius: 50%;
+    transition: 0.65s;
+    color: hsla(0, 0%, 85.9%, .68);
+}
+
+footer .social .svg-1:hover {
+    transition: 0.65s;
+    background: linear-gradient(180deg, #07f, #0038ff);
+}
+
+footer .social .svg-2:hover {
+    transition: 0.25s;
+    background: linear-gradient(180deg, #7289da, #7472da);
+}
+
+footer .social .svg-3:hover {
+    transition: 0.25s;
+    background: linear-gradient(180deg, #27a6e5, #2773e5);
+}
+
+footer .social .svg-4:hover {
+    transition: 0.25s;
+    background: linear-gradient(180deg, #f40000, #f44900);
+}
