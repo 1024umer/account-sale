@@ -49,7 +49,6 @@
         .file-input:hover {
             border-color: #666;
         }
-
     </style>
 @endsection
 
@@ -210,65 +209,83 @@
                                 name="custom_stock_delimiter">
                     </div>`
                 );
-            }
-            else {
+            } else {
                 $("#custom_stock_field").empty();
                 $("#custom_stock_field").remove();
             }
         }
     </script>
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-   <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-<script>
-    $(document).ready(function () {
-        // Triggered when the template dropdown changes
-        $('#templateSelect').change(function () {
-            var templateId = $(this).val();
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Triggered when the template dropdown changes
+            $('#templateSelect').change(function() {
+                var templateId = $(this).val();
 
-            $.ajax({
-                url: '/admin/gamingaccounts/new/',
-                type: 'GET',
-                data: { templateId: templateId },
-                success: function (data) {
-                    $('#basic-default-fullname').val(data.title);
-                    CKEDITOR.instances['editor1'].setData(data.description || '');
-                    $('#description').val(data.description);
-                    $('#price').val(data.price);
-                    $('#discount').val(data.discount);
-                    $('#product-sku').val(data.sku);
+                $.ajax({
+                    url: '/admin/gamingaccounts/new/',
+                    type: 'GET',
+                    data: {
+                        templateId: templateId
+                    },
+                    success: function(data) {
+                        $('#basic-default-fullname').val(data.title);
+                        CKEDITOR.instances['editor1'].setData(data.description || '');
+                        $('#description').val(data.description);
+                        $('#price').val(data.price);
+                        $('#discount').val(data.discount);
+                        $('#product-sku').val(data.sku);
 
-                    $('#category_product option').filter(function () {
-                        return $(this).text() == data.category;
-                    }).prop('selected', true);
+                        $('#category_product option').filter(function() {
+                            return $(this).text() == data.category;
+                        }).prop('selected', true);
 
-                    $('#subCategory_product option').filter(function () {
-                      return $(this).text() == data.subcategory;
-                    }).prop('selected', true);
+                        $('#subCategory_product option').filter(function() {
+                            return $(this).text() == data.subcategory;
+                        }).prop('selected', true);
 
-                    $('#sub_subCategory_product option').filter(function () {
-                      return $(this).text() == data.sub_subCategory;
-                    }).prop('selected', true);
+                        $('#sub_subCategory_product option').filter(function() {
+                            return $(this).text() == data.sub_subCategory;
+                        }).prop('selected', true);
 
-                    $('#status').val(data.status);
-                    $('#options').val(data.options);
+                        $('#status').val(data.status);
+                        $('#options').val(data.options);
 
-                    $('#meta_title').val(data.meta_title);
-                    $('#meta_description').val(data.meta_description);
-                    $('#meta_keywords').val(data.meta_keywords);
-                    $('#custom_stock').val(data.custom_stock);
-                    $('#format').val(data.format);
-                    $('#stock_list').val(data.stock_list);
-                    $('#manual').prop('checked', data.manual === "1");
-                    $('#private').prop('checked', data.private === 1);
-                    $('#checkbox_value').prop('checked', data.checkbox_value == 1);
-                },
-                error: function (error) {
-                    console.log('Error:', error);
-                }
+                        $('#meta_title').val(data.meta_title);
+                        $('#meta_description').val(data.meta_description);
+                        $('#meta_keywords').val(data.meta_keywords);
+                        $('#custom_stock').val(data.custom_stock);
+                        $('#format').val(data.format);
+                        $('#stock_list').val(data.stock_list);
+                        $('#manual').prop('checked', data.manual === "1");
+                        $('#private').prop('checked', data.private === 1);
+                        $('#checkbox_value').prop('checked', data.checkbox_value == 1);
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
             });
         });
-    });
-</script>
+        $(document).ready(function() {
+            $('#addMoreFields').click(function() {
+                var newFields = '<div class="additional-fields">';
+                newFields += '<div class="mb-3">';
+                newFields += '<label class="form-label" for="format">Format</label>';
+                newFields += '<input type="text" class="form-control" name="additional_format[]" />';
+                newFields += '</div>';
+                newFields += '<div class="mb-3">';
+                newFields += '<label class="form-label" for="stock_list">Stock List</label>';
+                newFields +=
+                    '<textarea class="form-control" name="additional_stock_list[]" rows="5"></textarea>';
+                newFields += '</div>';
+                newFields += '</div>';
+
+                $('#additionalFieldsContainer').append(newFields);
+            });
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -286,15 +303,15 @@
                         <h5 class="mb-0">Account Info</h5>
                     </div>
                     <div class="card-body">
-                      <div class="mb-3" id="template">
-                        <label class="form-label" for="">Template</label>
-                        <select name="template" class="form-control" id="templateSelect">
-                          <option value="">Select a Template</option>
+                        <div class="mb-3" id="template">
+                            <label class="form-label" for="">Template</label>
+                            <select name="template" class="form-control" id="templateSelect">
+                                <option value="">Select a Template</option>
                                 @foreach ($templates as $template)
                                     <option value="{{ $template->id }}">{{ $template->title }}</option>
                                 @endforeach
-                        </select>
-                       </div>
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Title</label>
                             <input type="text" class="form-control" id="basic-default-fullname"
@@ -306,37 +323,37 @@
                             <div style="height: 300px;" id="editor1"></div>
                         </div>
                         @php
-                            $store=DB::table('stores')->first();
+                            $store = DB::table('stores')->first();
                         @endphp
                         <div class="mb-3">
-                          <label class="form-label" for="basic-default-fullname">Admin Profit %</label>
-                          <input type="number" class="form-control" id="basic-default-fullname"
-                              value="{{ $store->adminProfit }}" readonly/>
-                      </div>
+                            <label class="form-label" for="basic-default-fullname">Admin Profit %</label>
+                            <input type="number" class="form-control" id="basic-default-fullname"
+                                value="{{ $store->adminProfit }}" readonly />
+                        </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Price</label>
-                            <input type="number" class="form-control" id="price"
-                                value="{{ old('price') }}" name="price" />
+                            <input type="number" class="form-control" id="price" value="{{ old('price') }}"
+                                name="price" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Discount %</label>
-                            <input type="number" class="form-control" id="discount"
-                                value="{{ old('discount') }}" name="discount" />
+                            <input type="number" class="form-control" id="discount" value="{{ old('discount') }}"
+                                name="discount" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Product SKU</label>
-                            <input type="text" class="form-control" id="product-sku"
-                                value="{{ old('sku') }}" name="sku" />
+                            <input type="text" class="form-control" id="product-sku" value="{{ old('sku') }}"
+                                name="sku" />
                         </div>
                         <div class="mb-3">
-                          <label class="form-label" for="">Category</label>
-                          <select name="category" class="form-control" id="category_product" >
-                              <option value="">Select a category</option>
-                              @foreach ($categories as $category)
-                                  <option value="{{ $category->id }}">{{ $category->name }}</option>
-                              @endforeach
-                          </select>
-                       </div>
+                            <label class="form-label" for="">Category</label>
+                            <select name="category" class="form-control" id="category_product">
+                                <option value="">Select a category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label" for="">SubCategory</label>
                             <select name="sub_category" class="form-control" id="subCategory_product">
@@ -374,18 +391,22 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                              <div class="mb-3">
-                                <label class="form-label" for="">Main Image (Image that will be displayed on the landing pages)</label>
-                                <input type="file" name="main_image" id="main_image" class="form-control" accept="image/*">
-                                <div class="img-prv p-4">
-                                  <img id="mainImagePreview" class="img img-fluid" style="max-height: 250px;" alt="">
-                              </div>
-                            </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="">Main Image (Image that will be displayed on
+                                        the landing pages)</label>
+                                    <input type="file" name="main_image" id="main_image" class="form-control"
+                                        accept="image/*">
+                                    <div class="img-prv p-4">
+                                        <img id="mainImagePreview" class="img img-fluid" style="max-height: 250px;"
+                                            alt="">
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="">Long Image (Image that will be displayed on the
+                                    <label class="form-label" for="">Long Image (Image that will be displayed on
+                                        the
                                         sliders can be the same main image)</label>
                                     <input type="file" name="long_image" class="form-control" accept="image/*">
                                 </div>
@@ -435,30 +456,36 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-phone">Custom Stock</label>
-                            <input type="text" id="custom_stock" class="form-control"
-                                placeholder="Enter stock"
+                            <input type="text" id="custom_stock" class="form-control" placeholder="Enter stock"
                                 name="custom_stock" />
-                            </div>
+                        </div>
                         <div class="mb-3" id="stock_field">
                             <label class="form-label" for="">Stock Delimiter</label>
-                            <select name="stock_delimiter" class="form-control" id="" onchange="stock_delimiter_change(this.value)">
+                            <select name="stock_delimiter" class="form-control" id=""
+                                onchange="stock_delimiter_change(this.value)">
                                 <option value="comma">Comma</option>
                                 <option value="newline">New line</option>
                                 <option value="custom">Custom</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                          <label class="form-label" for="basic-default-phone">Format</label>
-                          <input type="text" id="format" class="form-control" name="format" />
+                            <label class="form-label" for="basic-default-phone">Format</label>
+                            <input type="text" id="format" class="form-control" name="format" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="">Serials List</label>
-                            <textarea name="stock_list" class="form-control p-1" id="stock_list" placeholder="1, 2, 3, 4 ..." id="" rows="5" style="width: 100%"></textarea>
+                            <textarea name="stock_list" class="form-control p-1" id="stock_list" placeholder="1, 2, 3, 4 ..." id=""
+                                rows="5" style="width: 100%"></textarea>
                         </div>
+                        <div id="additionalFieldsContainer">
+                            <!-- Existing input fields for format and stock list -->
+                        </div>
+                        <button class="btn btn-outline-primary" type="button" id="addMoreFields">+</button>
+
                         <div class="mb-3">
-                          <label class="form-check-label" for="manual">Account</label>
-                          <input type="checkbox" id="checkbox_value" name="check_box_value" value="1">
-                      </div>
+                            <label class="form-check-label" for="manual">Account</label>
+                            <input type="checkbox" id="checkbox_value" name="check_box_value" value="1">
+                        </div>
                     </div>
                 </div>
                 <div class="card mb-4">
@@ -487,32 +514,31 @@
                         <div class="mb-3">
                             <div class="form-group">
                                 <label for="file">Choose or Drag & Drop a File</label>
-                                <input type="file" id="file" name="file" class="form-control-file file-input">
+                                <input type="file" id="file" name="file"
+                                    class="form-control-file file-input">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="">How many times file can be sold (-1 for unlimited)</label>
-                            <input type="number" class="form-control" name="file_limit"
-                                value="-1" required>
+                            <label class="form-label" for="">How many times file can be sold (-1 for
+                                unlimited)</label>
+                            <input type="number" class="form-control" name="file_limit" value="-1" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="">Minimum Quantity</label>
-                            <input type="number" class="form-control" name="min_quantity"
-                                value="1" required>
+                            <input type="number" class="form-control" name="min_quantity" value="1" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="">Maximum Quantity</label>
-                            <input type="number" class="form-control" name="max_quantity"
-                                value="-1" required>
+                            <input type="number" class="form-control" name="max_quantity" value="-1" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-check-label" for="manual">Manual</label>
-                            <input type="checkbox" id="manual" name="manual"  value="1">
+                            <input type="checkbox" id="manual" name="manual" value="1">
                         </div>
                         <div class="mb-3">
-                          <label class="form-check-label" for="manual">Private</label>
-                          <input type="checkbox" id="private" name="private" value="1">
-                      </div>
+                            <label class="form-check-label" for="manual">Private</label>
+                            <input type="checkbox" id="private" name="private" value="1">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -529,24 +555,24 @@
         </div>
     </form>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const fileInput = document.querySelector('#file');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.querySelector('#file');
 
-        fileInput.addEventListener('dragenter', function (e) {
-            e.preventDefault();
-        });
+            fileInput.addEventListener('dragenter', function(e) {
+                e.preventDefault();
+            });
 
-        fileInput.addEventListener('dragover', function (e) {
-            e.preventDefault();
-        });
+            fileInput.addEventListener('dragover', function(e) {
+                e.preventDefault();
+            });
 
-        fileInput.addEventListener('drop', function (e) {
-            e.preventDefault();
+            fileInput.addEventListener('drop', function(e) {
+                e.preventDefault();
 
-            const file = e.dataTransfer.files[0];
-            fileInput.files = e.dataTransfer.files;
-        });
-    });
-</scrip>
-@endsection
+                const file = e.dataTransfer.files[0];
+                fileInput.files = e.dataTransfer.files;
+            });
+        }); <
+        /scrip>
+    @endsection
