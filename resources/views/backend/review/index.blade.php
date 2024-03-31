@@ -45,40 +45,26 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.users.list') !!}',
+                ajax: '{!! route('admin.review.list') !!}',
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'comment',
+                        name: 'comment'
                     },
                     {
-                        data: 'username',
-                        name: 'username'
+                        data: 'star',
+                        name: 'star'
                     },
                     {
-                        data: 'email',
-                        name: 'email'
+                        data: 'user.name',
+                        name: 'User'
                     },
                     {
-                        data: 'role',
-                        name: 'role'
-                    },
-                    {
-                        data: 'referral_balance',
-                        name: 'referral_balance'
-                    },
-                    {
-                        data: 'status',
-                        render: function(data) {
-                            if (data == 'active') {
-                                return '<span class="badge bg-label-info">Active</span>';
-                            } else {
-                                return '<span class="badge bg-label-secondary">Inactive</span>';
-                            }
-                        }
+                        data: 'Product',
+                        name: 'gamingAccount.title'
                     },
                     {
                         data: 'action',
@@ -245,13 +231,11 @@
             <table id="main-table" class="datatables-users table">
                 <thead class="border-top">
                     <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Refferal Balance</th>
-                        <th>Status</th>
+                        <th>Id</th>
+                        <th>Comment</th>
+                        <th>Star</th>
+                        <th>User</th>
+                        <th>Product</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -268,14 +252,16 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label" for="user-role">Product</label>
-                        <select id="status" name="status" class="form-select">
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                        <select id="product_id" name="product_id" class="form-select">
+                            <option value="">Select Product</option>
+                            @foreach($gamingAccounts as $user)
+                                <option value="{{ $user->id }}">{{ $user->title }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="user-role">User</label>
-                        <select id="role" name="role" class="form-select">
+                        <select id="role" name="user_id" class="form-select">
                             <option value="">Select User</option>
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -283,19 +269,19 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="star">Start</label>
+                        <label class="form-label" for="star">Star</label>
                         <input type="number" max="5" min="1" class="form-control" value="{{ old('star') }}" id="star" placeholder="1-5"
-                            name="name" aria-label="John Doe" />
+                            name="star" aria-label="John Doe" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="comment">Email</label>
-                        <input type="comment" id="comment" value="{{ old('comment') }}" class="form-control" placeholder="Amazing Product"
+                        <label class="form-label" for="comment">Comment</label>
+                        <input type="comment" id="comment" value="{{ old('comment') }}" class="form-control" placeholder="Add comments"
                             aria-label="comment" name="comment" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="file">Image</label>
                         <input type="file" id="file" value="{{ old('file') }}" class="form-control"
-                            aria-label="file" name="file" />
+                            aria-label="file" name="image" />
                     </div>
                     <div class="mb-3">
                         @if ($errors->any())
