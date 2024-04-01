@@ -63,7 +63,7 @@
                         name: 'email'
                     },
                     {
-                        data: 'role',
+                        data: 'role.name',
                         name: 'role'
                     },
                     {
@@ -252,7 +252,7 @@
                         <th>Role</th>
                         <th>Refferal Balance</th>
                         <th>Status</th>
-                        <th>Actions</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>

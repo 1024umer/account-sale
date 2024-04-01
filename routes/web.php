@@ -386,7 +386,7 @@ Route::group(
                 Route::get('/', [VendorController::class, 'index']);
                 // Route::post('/store', [ReviewController::class, 'store'])->name('store');
                 Route::get('/list', [VendorController::class, 'list'])->name('list');
-                // Route::post('/answer', [ReviewController::class, 'answer'])->name('answer');
+                Route::get('/report', [VendorController::class, 'reports'])->name('report');
             }
         );
 
