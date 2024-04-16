@@ -67,7 +67,7 @@
                   @endif
                   <div class="total-header-section">
                     <div class="total-section text-right">
-                       
+
                       <p>Total: <span class="text-info">$ {{ isset($total)?$total:"" }}</span></p>
                     </div>
                   </div>
@@ -114,7 +114,10 @@
     </div>
   </div>
 </header>
-
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="modeToggleSwitch" onchange="toggleMode()">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+</div>
 
 @php
 $isHome = request()->routeIs('home');
@@ -133,7 +136,8 @@ $isHome = request()->routeIs('home');
       <ul class="navbar-nav">
         @foreach ($categoriesHeader as $category)
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown{{ $category->id }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown{{ $category->id }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmouseover="openDropdown(this)"
+            onmouseout="closeDropdown(this)">
             {{ $category->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="categoryDropdown{{ $category->id }}">
@@ -153,4 +157,16 @@ $isHome = request()->routeIs('home');
     </div>
   </div>
 </nav>
+<script>
+  function toggleMode() {
+    var body = document.body;
+    if (body.classList.contains('light-mode')) {
+      body.classList.remove('light-mode');
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+      body.classList.add('light-mode');
+    }
+  }
+</script>
 @endunless
