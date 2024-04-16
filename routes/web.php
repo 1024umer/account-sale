@@ -35,6 +35,7 @@ use App\Http\Controllers\Backend\SubSubcategoryController;
 use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\Frontend\LicenceKeyController as FrontendLicenceKeyController;
 use App\Http\Controllers\Backend\ReviewController;
+use App\Http\Controllers\Backend\VendorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -374,6 +375,18 @@ Route::group(
                 Route::post('/store', [ReviewController::class, 'store'])->name('store');
                 Route::get('/list', [ReviewController::class, 'list'])->name('list');
                 Route::post('/answer', [ReviewController::class, 'answer'])->name('answer');
+            }
+        );
+        Route::group(
+            [
+                'prefix' => 'vendor',
+                'as' => 'vendor.',
+            ],
+            function () {
+                Route::get('/', [VendorController::class, 'index']);
+                // Route::post('/store', [ReviewController::class, 'store'])->name('store');
+                Route::get('/list', [VendorController::class, 'list'])->name('list');
+                Route::get('/report', [VendorController::class, 'reports'])->name('report');
             }
         );
 

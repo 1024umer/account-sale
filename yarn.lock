@@ -1952,7 +1952,8 @@ bootstrap-maxlength@1.10.1:
 
 bootstrap-select@snapappointments/bootstrap-select#main:
   version "1.14.0-beta3"
-  resolved "git+ssh://git@github.com/snapappointments/bootstrap-select.git#939e94b14a34759e193f616b753e0a33081cc0c5"
+  resolved "git+ssh://git@github.com/snapappointments/bootstrap-select.git"
+  integrity sha512-AnN07doT3zsjPIBIy+KeNe5HNgbhAckTzBVkDVnC5IeGOrX8VOatlbnD85p7BzlxqPSek+gpsZKuxgMe40qshA==
 
 bootstrap@^4.4.1:
   version "4.6.2"
@@ -5811,7 +5812,14 @@ punycode@1.3.2:
   resolved "https://registry.npmjs.org/punycode/-/punycode-1.3.2.tgz"
   integrity sha512-RofWgt/7fL5wP1Y7fxE7/EmTLzQVnB0ycyibJ0OOHIlJqTNzglYFxVwETOcIoJqJmpDXJ9xImDv+Fq34F/d4Dw==
 
-qs@^6.5.1, qs@6.11.0:
+qs@^6.5.1:
+  version "6.11.0"
+  resolved "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
+  integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
+  dependencies:
+    side-channel "^1.0.4"
+
+qs@6.11.0:
   version "6.11.0"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
   integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==

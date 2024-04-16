@@ -55,8 +55,21 @@
       "slug": "admin.sub_subcategories.",
       "url": "/admin/sub_subcategories"
     },
-    
-
+    {
+      "menuHeader": "Vendors"
+    },
+    {
+      "name": "List",
+      "icon": "menu-icon tf-icons ti ti-ticket",
+      "slug": "admin.vendor",
+      "url": "/admin/vendor"
+    },
+    {
+      "name": "Reports",
+      "icon": "menu-icon tf-icons ti ti-ticket",
+      "slug": "admin.vendor.report",
+      "url": "/admin/vendor/report"
+    },
     {
       "menuHeader": "Support"
     },

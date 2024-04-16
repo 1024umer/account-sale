@@ -4,7 +4,7 @@
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Admin - Reviews')
+@section('title', 'Admin - Users')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -45,26 +45,40 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.review.list') !!}',
+                ajax: "{!! route('admin.vendor.list') !!}",
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'comment',
-                        name: 'comment'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
-                        data: 'star',
-                        name: 'star'
+                        data: 'username',
+                        name: 'username'
                     },
                     {
-                        data: 'user.name',
-                        name: 'User'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
-                        data: 'Product',
-                        name: 'gamingAccount.title'
+                        data: 'role.name',
+                        name: 'role'
+                    },
+                    {
+                        data: 'referral_balance',
+                        name: 'referral_balance'
+                    },
+                    {
+                        data: 'status',
+                        render: function(data) {
+                            if (data == 'active') {
+                                return '<span class="badge bg-label-info">Active</span>';
+                            } else {
+                                return '<span class="badge bg-label-secondary">Inactive</span>';
+                            }
+                        }
                     },
                     {
                         data: 'action',
@@ -206,12 +220,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div class="content-left">
-                            <span>Reviews</span>
+                            <span>Vendors</span>
                             <div class="d-flex align-items-end mt-2">
-                                <h3 class="mb-0 me-2"></h3>
+                                <h3 class="mb-0 me-2">{{ $totalVendors }}</h3>
                                 <small class="text-success">(100%)</small>
                             </div>
-                            <small>Total Reviews</small>
+                            <small>Total Vendors</small>
                         </div>
                         <span class="badge bg-label-primary rounded p-2">
                             <i class="ti ti-user ti-sm"></i>
@@ -225,79 +239,26 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">Search Filter</h5>
-            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasAddUser"> + Add new</button>
+            <!-- <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasAddUser"> + Add new</button> -->
         </div>
         <div class="card-datatable table-responsive">
             <table id="main-table" class="datatables-users table">
                 <thead class="border-top">
                     <tr>
-                        <th>Id</th>
-                        <th>Comment</th>
-                        <th>Star</th>
-                        <th>User</th>
-                        <th>Product</th>
-                        <th>Actions</th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Refferal Balance</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
         </div>
         <!-- Offcanvas to add new user -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
-            <div class="offcanvas-header">
-                <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Add User</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body mx-0 flex-grow-0">
-                <form action="{{ route('admin.review.store') }}" class="add-new-user pt-0" method="post" enctype="multipart/form-data" id="addNewUserForm">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label" for="user-role">Product</label>
-                        <select id="product_id" name="product_id" class="form-select">
-                            <option value="">Select Product</option>
-                            @foreach($gamingAccounts as $user)
-                                <option value="{{ $user->id }}">{{ $user->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="user-role">User</label>
-                        <select id="role" name="user_id" class="form-select">
-                            <option value="">Select User</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="star">Star</label>
-                        <input type="number" max="5" min="1" class="form-control" value="{{ old('star') }}" id="star" placeholder="1-5"
-                            name="star" aria-label="John Doe" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="comment">Comment</label>
-                        <input type="comment" id="comment" value="{{ old('comment') }}" class="form-control" placeholder="Add comments"
-                            aria-label="comment" name="comment" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="file">Image</label>
-                        <input type="file" id="file" value="{{ old('file') }}" class="form-control"
-                            aria-label="file" name="image" />
-                    </div>
-                    <div class="mb-3">
-                        @if ($errors->any())
-                            <div class="alert alert-danger mt-3" role="alert">
-                                @foreach ($errors->all() as $error)
-                                    {{ $error }}
-                                    <br>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-                </form>
-            </div>
-        </div>
+        
     </div>
 
 @endsection
