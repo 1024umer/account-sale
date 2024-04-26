@@ -49,12 +49,12 @@
       @foreach ($categoriesHeader as $category)
       <div class="col-xl-2 col-md-4">
           <div class="icon-box">
-            <img  src="https://kandan.dev/storage/app/{{ $category->image }}" />
+            <img  src="{{ $category->image }}" />
             <h3><a href="">{{ $category->name }}</a></h3>
           </div>
         </div>
         @endforeach
-       
+
       </div>
 
     </div>
@@ -69,7 +69,7 @@
                     <p>MORE THAN 3+ YEARS OF WORK</p>
                     <p>IN CATALOG 12 GAMES</p>
                     <p>IN CATEGORIES 30 ACTIVE PRODUCTS</p>
-                  
+
                 </div>
             </div>
             <div class="col-lg-5">
@@ -91,11 +91,11 @@
       </div>
     </div>
     @endforeach
-  
 
-    <!-- Add more columns as needed -->
+
+    <!-- Add more columns as needed !-->
   </div>
-</div> -->
+</div>
 
 <section class="contact pt-120 pb-120 bg-img" style="background-image: url(&quot;assets/img/media/contact-form-bg.png&quot;);">
     <div class="container">
@@ -241,7 +241,7 @@ justify-content: center;
                                 <div class="badge badge-danger ">{{ $product->discount }}% OFF</div>
                                 @endif
                                 <a href="{{ route('games.details', ['slug' => $product->title]) }}"  title="{{ $product->description }}" ><h5 class="card-title">{{ $product->title }}</h5></a>
-                               
+
                                 <p class="">Price:
                                     @if ($product->discount > 0)
                                     <del>${{ $product->price }}</del>

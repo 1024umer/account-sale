@@ -111,12 +111,12 @@ class CategoryController extends Controller
             'image' => 'required',
         ]);
 
+        $path = $request->image->store('category');
         $category = new Category();
         $category->name = $request->name;
-        $category->image = $request->image;
+        $category->image = $path;
         $category->created_by = Auth::user()->id;
         $category->save();
-
         $per = new Permission();
         $per->name = $category->name;
         $per->type = 'Category';
@@ -135,7 +135,8 @@ class CategoryController extends Controller
         $category = Category::where('id', $request->id)->first();
         $category->name = $request->name;
         if ($request->hasFile('image')) {
-            $category->image = $request['image'];
+            $path = $request['image']->store('category');
+            $category->image = $path;
         }
         $category->save();
 

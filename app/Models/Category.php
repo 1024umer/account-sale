@@ -17,14 +17,14 @@ class Category extends Model
         'image',
     ];
 
-    public function setImageAttribute($value)
-    {
-        $this->attributes['image'] = ImageUploadHelper::uploadImage(self::IMAGE_PATH, $value, null);
-    }
+    // public function setImageAttribute($value)
+    // {
+    //     $this->attributes['image'] = ImageUploadHelper::uploadImage(self::IMAGE_PATH, $value, null);
+    // }
 
     public function getImageAttribute($value)
     {
-        return ImageUploadHelper::getImage($value, [600, 600], self::DEFAULT_IMAGE_PATH);
+        return asset('storage/'.$value);
     }
 
     // search
