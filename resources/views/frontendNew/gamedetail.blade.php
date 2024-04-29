@@ -19,9 +19,9 @@
     <div class="container">
 
         <div class="row">
-            
-           
-           
+
+
+
         <div class="row my-4">
                     <div class="col-md-8">
                         <div class="left-side row p-4">
@@ -180,23 +180,26 @@
     <div class="modal-dialog modal-dialog-centered">
         <form action="{{ route('stripe.pay') }}" id="paymentForm" class="require-validation" data-stripe-publishable-key="{{ $data->stripe_key }}" id="checkout-form" method="post">
             @csrf
-            <input type="text" name="easy_mode" id="easyModeCheckbox" value="">
+            <input type="hidden" name="easy_mode" id="easyModeCheckbox" value="">
             <input type="hidden" required name="product_type" value="GamingAccount">
             <input type="hidden" required name="product_id" value="{{ $product->id }}">
             <input type="hidden" required name="quantity" id="quantity_input" value="1">
             <input type="hidden" name="payment_method" id="payment_method">
             <input type="hidden" required class="totalPriceInput" name="totalPrice" value="{{ $product->price - ($product->price * $product->discount / 100) }}">
-            
+
             <div class="modal-content">
                 <div class="modal-body p-0">
+                  <div class="text-right">
+                    <button class="btn-close" type="button" data-bs-dismiss="modal">x</button>
+                  </div>
                     <div class="row">
                         <div class="col-md-6 left-side p-4">
                             <div class="top p-3">
                                 <p>{{ $product->title }}</p>
-                                <h1>Payment</h1>
+                                <h3>Payment</h3>
                             </div>
                             @if (!Auth::check())
-                                <div class="new-user">
+                                <div class="new-user pl-3">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
                                         <input name="name" required type="text" class="form-control" placeholder="Name" value="{{ old('name') }}">
@@ -214,13 +217,13 @@
                             <div class="bottom p-2">
                                 <div class="d-flex my-3 align-items-center justify-content-between">
                                     <p class="mb-0">To Pay:</p>
-                                    <h1 class="mb-0">$<span class="totalPrice">{{ $product->price - ($product->price * $product->discount / 100) }}</span><span class="m-auto d-inline">.00</span></h1>
+                                    <h4 class="mb-0">$<span class="totalPrice">{{ $product->price - ($product->price * $product->discount / 100) }}</span><span class="m-auto d-inline">.00</span></h4>
                                 </div>
                                 <div class="qualtity d-flex justify-content-between align-items-center">
                                     <div class="counter">
-                                        <button class="plusBtn btn btn-secondary" type="button">+</button>
+                                        <button class="plusBtn btn btn-secondary btn-sm" type="button">+</button>
                                         <div class="counter__number">1</div>
-                                        <button class="minusBtn btn btn-secondary" type="button">-</button>
+                                        <button class="minusBtn btn btn-secondary btn-sm" type="button">-</button>
                                     </div>
                                     <button class="payBtn2 paymentBtn btn btn-primary">Pay</button>
                                 </div>
@@ -230,7 +233,6 @@
                             <div class="top p-2">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <p>POPULAR PAYMENT SYSTEMS:</p>
-                                    <button class="btn btn-close" type="button" data-bs-dismiss="modal">x</button>
                                 </div>
                                 <div class="icons-div my-4">
                                     @if ($data->paybis_account)
@@ -553,7 +555,7 @@
         </div>
     </div>
 
- 
+
     @if ($available_channels_count <= 0)
     <button data-bs-toggle="modal" style="display: none;" id="notify_btn" data-bs-target="#staticBackdropNotify"></button>
     <script>

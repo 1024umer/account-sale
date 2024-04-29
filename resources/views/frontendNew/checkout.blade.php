@@ -212,7 +212,7 @@
                     <div class="row">
                         <div class="col-md-6 left-side p-4">
                             <div class="top p-3">
-                                <h1>Payment</h1>
+                                <h3>Payment</h3>
                                 <img class="img img-fluid w-auto" src="{{ asset('frontend/images/underline.svg') }}"
                                     alt="">
                             </div>

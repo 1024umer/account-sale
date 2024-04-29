@@ -983,7 +983,7 @@
                                     </h4>
                                 </div>
                                 @if ($product->product_status == 'available')
-                                
+
                                     <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                         class="w-100 payBtn my-2">Go To Pay</button>
                                 @endif
@@ -1032,7 +1032,7 @@
                             <div class="col-md-6 left-side p-4">
                                 <div class="top p-3">
                                     <p>{{ $product->title }}</p>
-                                    <h1>Payment</h1>
+                                    <h3>Payment</h3>
                                     <img class="img img-fluid w-auto" src="{{ asset('frontend/images/underline.svg') }}"
                                         alt="">
                                 </div>

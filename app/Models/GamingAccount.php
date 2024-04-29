@@ -30,25 +30,32 @@ class GamingAccount extends Model
         'long_image',
     ];
 
-    public function setMainImageAttribute($value)
-    {
-        $this->attributes['main_image'] = ImageUploadHelper::uploadImage(self::IMAGE_PATH, $value, null);
-    }
+    // public function setMainImageAttribute($value)
+    // {
+    //     $this->attributes['main_image'] = ImageUploadHelper::uploadImage(self::IMAGE_PATH, $value, null);
+    // }
 
-    public function setLongImageAttribute($value)
-    {
-        $this->attributes['long_image'] = ImageUploadHelper::uploadImage(self::IMAGE_PATH, $value, null);
-    }
+    // public function setLongImageAttribute($value)
+    // {
+    //     $this->attributes['long_image'] = ImageUploadHelper::uploadImage(self::IMAGE_PATH, $value, null);
+    // }
 
+    // public function getMainImageAttribute($value)
+    // {
+    //     return ImageUploadHelper::getImage($value, [600, 600], self::DEFAULT_IMAGE_PATH);
+    // }
     public function getMainImageAttribute($value)
     {
-        return ImageUploadHelper::getImage($value, [600, 600], self::DEFAULT_IMAGE_PATH);
+        return asset('storage/'.$value);
     }
-
     public function getLongImageAttribute($value)
     {
-        return ImageUploadHelper::getImage($value, [580, 760], self::DEFAULT_IMAGE_PATH);
+        return asset('storage/'.$value);
     }
+    // public function getLongImageAttribute($value)
+    // {
+    //     return ImageUploadHelper::getImage($value, [580, 760], self::DEFAULT_IMAGE_PATH);
+    // }
 
     public function scopeSearch($query, $search)
     {

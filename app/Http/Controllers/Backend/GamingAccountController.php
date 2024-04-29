@@ -299,6 +299,8 @@ class GamingAccountController extends Controller
       'long_image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
       'images' => 'max:10'
     ]);
+    $longImg = $request['long_image']->store('gaming_accounts');
+    $mainImg = $request['main_image']->store('gaming_accounts');
     $gamingAccount = new GamingAccount();
     $gamingAccount->created_by = Auth::user()->id;
     $gamingAccount->temp_id = $request['template'];
@@ -322,8 +324,8 @@ class GamingAccountController extends Controller
     $gamingAccount->min_quantity = $request['min_quantity'];
     $gamingAccount->max_quantity = $request['max_quantity'];
 
-    $gamingAccount->main_image = $request['main_image'];
-    $gamingAccount->long_image = $request['long_image'];
+    $gamingAccount->main_image = $mainImg;
+    $gamingAccount->long_image = $longImg;
     $gamingAccount->manual = $request->has('manual') ? 1 : 0;
     $gamingAccount->private = $request->has('private') ? 1 : 0;
     if ($gamingAccount->private == '1') {
@@ -520,10 +522,12 @@ class GamingAccountController extends Controller
     $gamingAccount->manual = $request->has('manual') ? 1 : 0;
 
     if ($request->hasFile('main_image')) {
-      $gamingAccount->main_image = $request['main_image'];
+      $mainImg = $request['main_image']->store('gaming_accounts');
+      $gamingAccount->main_image = $mainImg;
     }
     if ($request->hasFile('long_image')) {
-      $gamingAccount->long_image = $request['long_image'];
+      $longImg = $request['long_image']->store('gaming_accounts');
+      $gamingAccount->long_image = $longImg;
     }
 
     $gamingAccount->save();

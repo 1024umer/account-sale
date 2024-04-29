@@ -1001,7 +1001,7 @@ rel="stylesheet"
                             <div class="col-md-6 left-side p-4">
                                 <div class="top p-3">
                                     <p>{{ $product->title }}</p>
-                                    <h1>Payment</h1>
+                                    <h3>Payment</h3>
                                     <img class="img img-fluid w-auto" src="{{ asset('frontend/images/underline.svg') }}"
                                         alt="">
                                 </div>
@@ -1455,7 +1455,7 @@ rel="stylesheet"
         </div>
     </div>
 
- 
+
     @if ($available_channels_count <= 0)
     <button data-bs-toggle="modal" style="display: none;" id="notify_btn" data-bs-target="#staticBackdropNotify"></button>
     <script>
