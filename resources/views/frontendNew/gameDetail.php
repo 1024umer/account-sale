@@ -43,8 +43,6 @@
                 <div class="banner-content">
                     <h1>Privacy Policy</h1>
                     <p>For cooperation or any other information, you can contact us at the following contacts</p>
-
-
                 </div>
             </div>
             <div class="col-lg-5">
@@ -69,14 +67,14 @@
                 </div>
             </div>
             <div class="row">
-           
-              
-             
-               
+
+
+
+
             <div class="policy">
                     {!! $data->privacy_policy !!}
                 </div>
-               
+
             </div>
         </div>
     </section>
